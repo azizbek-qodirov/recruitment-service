@@ -1,0 +1,3 @@
+[submodule "recruitment-service/staffer-protos"]
+	path = recruitment-service/staffer-protos
+	url = git@github.com:Azizbek-Qodirov/staffer-protos.git
