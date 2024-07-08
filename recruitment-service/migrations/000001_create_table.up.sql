@@ -7,6 +7,8 @@ CREATE TABLE Vacancy (
     status          VARCHAR(50) NOT NULL,       -- Bo'sh ish o'rnining holati (masalan, ochiq, yopiq)
     created_at      TIMESTAMP DEFAULT NOW(),    -- Bo'sh ish o'rni qachon yaratilganini ko'rsatuvchi vaqt belgisi
     updated_at      TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP -- Bo'sh ish o'rni oxirgi marta qachon yangilanganini ko'rsatuvchi vaqt belgisi
+    deleted_at      BIGINT DEFAULT 0
+
 );
 
 -- Nom bo'yicha tezkor qidirish uchun indeks
@@ -32,6 +34,8 @@ CREATE TABLE JobApplication (
     status          VARCHAR(50) NOT NULL,       -- Ish uchun arizaning holati
     created_at      TIMESTAMP DEFAULT NOW(),    -- Ish uchun ariza qachon yaratilganini ko'rsatuvchi vaqt belgisi
     updated_at      TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP -- Ish uchun ariza oxirgi marta qachon yangilanganini ko'rsatuvchi vaqt belgisi
+    deleted_at      BIGINT DEFAULT 0
+       
 );
 
 -- Nomzod identifikatori bo'yicha tezkor qidirish uchun indeks
@@ -56,6 +60,8 @@ CREATE TABLE Company (
     website         VARCHAR(255),               -- Kompaniyaning veb-sayti
     created_at      TIMESTAMP DEFAULT NOW(),    -- Kompaniya qachon yaratilganini ko'rsatuvchi vaqt belgisi
     updated_at      TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP -- Kompaniya oxirgi marta qachon yangilanganini ko'rsatuvchi vaqt belgisi
+    deleted_at      BIGINT DEFAULT 0
+
 );
 
 -- Nom bo'yicha tezkor qidirish uchun indeks
