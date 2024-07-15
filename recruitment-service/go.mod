@@ -1,6 +1,6 @@
 module recruitment
 
-go 1.22.1
+go 1.21
 
 require (
 	github.com/google/uuid v1.6.0
@@ -8,6 +8,8 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/spf13/cast v1.6.0
 	github.com/stretchr/testify v1.8.1
+	// golang.org/x/exp v0.0.0-20240707233637-46b078467d37
+	// golang.org/x/sync v0.7.0 // indirec // Qo'shimcha kerakli kutubxona
 	google.golang.org/grpc v1.65.0
 	google.golang.org/protobuf v1.34.1
 )

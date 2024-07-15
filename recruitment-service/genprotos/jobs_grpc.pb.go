@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v3.12.4
-// source: staffer-protos/jobs.proto
+// source: jobs.proto
 
 package genprotos
 
@@ -258,5 +258,5 @@ var JobService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "staffer-protos/jobs.proto",
+	Metadata: "jobs.proto",
 }

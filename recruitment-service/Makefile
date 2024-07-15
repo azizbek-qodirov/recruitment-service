@@ -13,7 +13,7 @@ mig-up:
 	migrate -database 'postgres://postgres:root@localhost:5432/staffer_db?sslmode=disable' -path migrations up
 
 mig-down:
-	migrate -database 'postgres://postgres:root@localhost:5432/staffer_db?sslmode=disable' -path migrations down
+	migrate -database 'postgres://postgres:root@localhost:5432/staffer_db?sslmode=disable' -path migrations down 
 
 gen-proto:
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
@@ -31,8 +31,18 @@ gen-protoAll:
 swag-gen:
 	~/go/bin/swag init -g ./api/api.go -o docs force 1
 
+submodule-pull:
+    # submodule pull qilmasdan 
+	git submodule update --init --recursive
+
 # PROTO_DIR=proto
 # OUT_DIR=genproto
 
 # proto-genn:
 #     protoc -I=$(PROTO_DIR) --go_out=$(OUT_DIR) --go-grpc_out=$(OUT_DIR) $(PROTO_DIR)/*.proto
+
+
+# DOCKER BUYRUQLARI:
+
+docker-run:
+	docker run --network="host" --publish  9090:7070 recruitment-service

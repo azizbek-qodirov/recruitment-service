@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        v3.12.4
-// source: staffer-protos/void.proto
+// source: void.proto
 
 package genprotos
 
@@ -32,7 +32,7 @@ type Void struct {
 func (x *Void) Reset() {
 	*x = Void{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_staffer_protos_void_proto_msgTypes[0]
+		mi := &file_void_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -45,7 +45,7 @@ func (x *Void) String() string {
 func (*Void) ProtoMessage() {}
 
 func (x *Void) ProtoReflect() protoreflect.Message {
-	mi := &file_staffer_protos_void_proto_msgTypes[0]
+	mi := &file_void_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *Void) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Void.ProtoReflect.Descriptor instead.
 func (*Void) Descriptor() ([]byte, []int) {
-	return file_staffer_protos_void_proto_rawDescGZIP(), []int{0}
+	return file_void_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Void) GetSuccess() bool {
@@ -86,7 +86,7 @@ type Byid struct {
 func (x *Byid) Reset() {
 	*x = Byid{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_staffer_protos_void_proto_msgTypes[1]
+		mi := &file_void_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -99,7 +99,7 @@ func (x *Byid) String() string {
 func (*Byid) ProtoMessage() {}
 
 func (x *Byid) ProtoReflect() protoreflect.Message {
-	mi := &file_staffer_protos_void_proto_msgTypes[1]
+	mi := &file_void_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112,7 +112,7 @@ func (x *Byid) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Byid.ProtoReflect.Descriptor instead.
 func (*Byid) Descriptor() ([]byte, []int) {
-	return file_staffer_protos_void_proto_rawDescGZIP(), []int{1}
+	return file_void_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Byid) GetId() string {
@@ -134,7 +134,7 @@ type Pagination struct {
 func (x *Pagination) Reset() {
 	*x = Pagination{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_staffer_protos_void_proto_msgTypes[2]
+		mi := &file_void_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -147,7 +147,7 @@ func (x *Pagination) String() string {
 func (*Pagination) ProtoMessage() {}
 
 func (x *Pagination) ProtoReflect() protoreflect.Message {
-	mi := &file_staffer_protos_void_proto_msgTypes[2]
+	mi := &file_void_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -160,7 +160,7 @@ func (x *Pagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Pagination.ProtoReflect.Descriptor instead.
 func (*Pagination) Descriptor() ([]byte, []int) {
-	return file_staffer_protos_void_proto_rawDescGZIP(), []int{2}
+	return file_void_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Pagination) GetLimit() int64 {
@@ -177,43 +177,42 @@ func (x *Pagination) GetOffset() int64 {
 	return 0
 }
 
-var File_staffer_protos_void_proto protoreflect.FileDescriptor
+var File_void_proto protoreflect.FileDescriptor
 
-var file_staffer_protos_void_proto_rawDesc = []byte{
-	0x0a, 0x19, 0x73, 0x74, 0x61, 0x66, 0x66, 0x65, 0x72, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73,
-	0x2f, 0x76, 0x6f, 0x69, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x73, 0x74, 0x61,
-	0x66, 0x66, 0x22, 0x3a, 0x0a, 0x04, 0x56, 0x6f, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x75,
-	0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63,
-	0x63, 0x65, 0x73, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x16,
-	0x0a, 0x04, 0x42, 0x79, 0x69, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x3a, 0x0a, 0x0a, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66,
-	0x66, 0x73, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73,
-	0x65, 0x74, 0x42, 0x0c, 0x5a, 0x0a, 0x67, 0x65, 0x6e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_void_proto_rawDesc = []byte{
+	0x0a, 0x0a, 0x76, 0x6f, 0x69, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x73, 0x74,
+	0x61, 0x66, 0x66, 0x22, 0x3a, 0x0a, 0x04, 0x56, 0x6f, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x73,
+	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22,
+	0x16, 0x0a, 0x04, 0x42, 0x79, 0x69, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x3a, 0x0a, 0x0a, 0x50, 0x61, 0x67, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f,
+	0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6f, 0x66, 0x66,
+	0x73, 0x65, 0x74, 0x42, 0x0c, 0x5a, 0x0a, 0x67, 0x65, 0x6e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73,
+	0x2f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_staffer_protos_void_proto_rawDescOnce sync.Once
-	file_staffer_protos_void_proto_rawDescData = file_staffer_protos_void_proto_rawDesc
+	file_void_proto_rawDescOnce sync.Once
+	file_void_proto_rawDescData = file_void_proto_rawDesc
 )
 
-func file_staffer_protos_void_proto_rawDescGZIP() []byte {
-	file_staffer_protos_void_proto_rawDescOnce.Do(func() {
-		file_staffer_protos_void_proto_rawDescData = protoimpl.X.CompressGZIP(file_staffer_protos_void_proto_rawDescData)
+func file_void_proto_rawDescGZIP() []byte {
+	file_void_proto_rawDescOnce.Do(func() {
+		file_void_proto_rawDescData = protoimpl.X.CompressGZIP(file_void_proto_rawDescData)
 	})
-	return file_staffer_protos_void_proto_rawDescData
+	return file_void_proto_rawDescData
 }
 
-var file_staffer_protos_void_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_staffer_protos_void_proto_goTypes = []any{
+var file_void_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_void_proto_goTypes = []any{
 	(*Void)(nil),       // 0: staff.Void
 	(*Byid)(nil),       // 1: staff.Byid
 	(*Pagination)(nil), // 2: staff.Pagination
 }
-var file_staffer_protos_void_proto_depIdxs = []int32{
+var file_void_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -221,13 +220,13 @@ var file_staffer_protos_void_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_staffer_protos_void_proto_init() }
-func file_staffer_protos_void_proto_init() {
-	if File_staffer_protos_void_proto != nil {
+func init() { file_void_proto_init() }
+func file_void_proto_init() {
+	if File_void_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_staffer_protos_void_proto_msgTypes[0].Exporter = func(v any, i int) any {
+		file_void_proto_msgTypes[0].Exporter = func(v any, i int) any {
 			switch v := v.(*Void); i {
 			case 0:
 				return &v.state
@@ -239,7 +238,7 @@ func file_staffer_protos_void_proto_init() {
 				return nil
 			}
 		}
-		file_staffer_protos_void_proto_msgTypes[1].Exporter = func(v any, i int) any {
+		file_void_proto_msgTypes[1].Exporter = func(v any, i int) any {
 			switch v := v.(*Byid); i {
 			case 0:
 				return &v.state
@@ -251,7 +250,7 @@ func file_staffer_protos_void_proto_init() {
 				return nil
 			}
 		}
-		file_staffer_protos_void_proto_msgTypes[2].Exporter = func(v any, i int) any {
+		file_void_proto_msgTypes[2].Exporter = func(v any, i int) any {
 			switch v := v.(*Pagination); i {
 			case 0:
 				return &v.state
@@ -268,18 +267,18 @@ func file_staffer_protos_void_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_staffer_protos_void_proto_rawDesc,
+			RawDescriptor: file_void_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_staffer_protos_void_proto_goTypes,
-		DependencyIndexes: file_staffer_protos_void_proto_depIdxs,
-		MessageInfos:      file_staffer_protos_void_proto_msgTypes,
+		GoTypes:           file_void_proto_goTypes,
+		DependencyIndexes: file_void_proto_depIdxs,
+		MessageInfos:      file_void_proto_msgTypes,
 	}.Build()
-	File_staffer_protos_void_proto = out.File
-	file_staffer_protos_void_proto_rawDesc = nil
-	file_staffer_protos_void_proto_goTypes = nil
-	file_staffer_protos_void_proto_depIdxs = nil
+	File_void_proto = out.File
+	file_void_proto_rawDesc = nil
+	file_void_proto_goTypes = nil
+	file_void_proto_depIdxs = nil
 }

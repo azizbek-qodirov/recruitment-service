@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v3.12.4
-// source: staffer-protos/vacancy.proto
+// source: vacancy.proto
 
 package genprotos
 
@@ -19,11 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	VacancyService_Create_FullMethodName  = "/staff.VacancyService/Create"
-	VacancyService_GetByID_FullMethodName = "/staff.VacancyService/GetByID"
-	VacancyService_Update_FullMethodName  = "/staff.VacancyService/Update"
-	VacancyService_Delete_FullMethodName  = "/staff.VacancyService/Delete"
-	VacancyService_GetAll_FullMethodName  = "/staff.VacancyService/GetAll"
+	VacancyService_Create_FullMethodName          = "/staff.VacancyService/Create"
+	VacancyService_GetByID_FullMethodName         = "/staff.VacancyService/GetByID"
+	VacancyService_Update_FullMethodName          = "/staff.VacancyService/Update"
+	VacancyService_Delete_FullMethodName          = "/staff.VacancyService/Delete"
+	VacancyService_GetAll_FullMethodName          = "/staff.VacancyService/GetAll"
+	VacancyService_GetApplications_FullMethodName = "/staff.VacancyService/GetApplications"
+	VacancyService_GetOffers_FullMethodName       = "/staff.VacancyService/GetOffers"
 )
 
 // VacancyServiceClient is the client API for VacancyService service.
@@ -35,6 +37,8 @@ type VacancyServiceClient interface {
 	Update(ctx context.Context, in *VacancyGetResUpdateReq, opts ...grpc.CallOption) (*Void, error)
 	Delete(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*Void, error)
 	GetAll(ctx context.Context, in *VacancyGetAllReq, opts ...grpc.CallOption) (*VacancyGetAllRes, error)
+	GetApplications(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*VacancyApplicationsRes, error)
+	GetOffers(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*VacancyOffersRes, error)
 }
 
 type vacancyServiceClient struct {
@@ -95,6 +99,26 @@ func (c *vacancyServiceClient) GetAll(ctx context.Context, in *VacancyGetAllReq,
 	return out, nil
 }
 
+func (c *vacancyServiceClient) GetApplications(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*VacancyApplicationsRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VacancyApplicationsRes)
+	err := c.cc.Invoke(ctx, VacancyService_GetApplications_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *vacancyServiceClient) GetOffers(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*VacancyOffersRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VacancyOffersRes)
+	err := c.cc.Invoke(ctx, VacancyService_GetOffers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // VacancyServiceServer is the server API for VacancyService service.
 // All implementations must embed UnimplementedVacancyServiceServer
 // for forward compatibility
@@ -104,6 +128,8 @@ type VacancyServiceServer interface {
 	Update(context.Context, *VacancyGetResUpdateReq) (*Void, error)
 	Delete(context.Context, *Byid) (*Void, error)
 	GetAll(context.Context, *VacancyGetAllReq) (*VacancyGetAllRes, error)
+	GetApplications(context.Context, *Byid) (*VacancyApplicationsRes, error)
+	GetOffers(context.Context, *Byid) (*VacancyOffersRes, error)
 	mustEmbedUnimplementedVacancyServiceServer()
 }
 
@@ -125,6 +151,12 @@ func (UnimplementedVacancyServiceServer) Delete(context.Context, *Byid) (*Void, 
 }
 func (UnimplementedVacancyServiceServer) GetAll(context.Context, *VacancyGetAllReq) (*VacancyGetAllRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
+}
+func (UnimplementedVacancyServiceServer) GetApplications(context.Context, *Byid) (*VacancyApplicationsRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetApplications not implemented")
+}
+func (UnimplementedVacancyServiceServer) GetOffers(context.Context, *Byid) (*VacancyOffersRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOffers not implemented")
 }
 func (UnimplementedVacancyServiceServer) mustEmbedUnimplementedVacancyServiceServer() {}
 
@@ -229,6 +261,42 @@ func _VacancyService_GetAll_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VacancyService_GetApplications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Byid)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VacancyServiceServer).GetApplications(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VacancyService_GetApplications_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VacancyServiceServer).GetApplications(ctx, req.(*Byid))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VacancyService_GetOffers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Byid)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VacancyServiceServer).GetOffers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VacancyService_GetOffers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VacancyServiceServer).GetOffers(ctx, req.(*Byid))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // VacancyService_ServiceDesc is the grpc.ServiceDesc for VacancyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -256,7 +324,15 @@ var VacancyService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "GetAll",
 			Handler:    _VacancyService_GetAll_Handler,
 		},
+		{
+			MethodName: "GetApplications",
+			Handler:    _VacancyService_GetApplications_Handler,
+		},
+		{
+			MethodName: "GetOffers",
+			Handler:    _VacancyService_GetOffers_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "staffer-protos/vacancy.proto",
+	Metadata: "vacancy.proto",
 }

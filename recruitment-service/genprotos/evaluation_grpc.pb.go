@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v3.12.4
-// source: staffer-protos/evaluation.proto
+// source: evaluation.proto
 
 package genprotos
 
@@ -258,5 +258,5 @@ var EvaulationService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "staffer-protos/evaluation.proto",
+	Metadata: "evaluation.proto",
 }

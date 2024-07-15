@@ -1,5 +1,5 @@
 # Base image sifatida Go'ni tanlaymiz
-FROM golang:1.19-alpine AS builder
+FROM golang:1.21 AS builder
 
 # Ishchi katalogni yaratamiz
 WORKDIR /app
@@ -12,18 +12,20 @@ RUN go mod download
 COPY . .
 
 # Loyiha kodini build qilamiz
-RUN go build -o main.go .
+RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 # Minimalistic run-time image yaratamiz
 FROM alpine:latest
 
 # Ishchi katalogni yaratamiz
-WORKDIR /root/
+WORKDIR /root/      
 
 # Build natijasida olingan binary'ni nusxalaymiz
-COPY --from=builder /app/main.go .
+COPY --from=builder /app/main .
+COPY .env .env
 
+# Tarmoq portini ochamiz
 EXPOSE 9090
 
 # Ilovani ishga tushiramiz
-CMD ["./main.go"]
+CMD ["./main"]

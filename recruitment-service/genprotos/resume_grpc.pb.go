@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v3.12.4
-// source: staffer-protos/resume.proto
+// source: resume.proto
 
 package genprotos
 
@@ -19,22 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	ResumeService_Create_FullMethodName = "/staff.ResumeService/Create"
-	ResumeService_Get_FullMethodName    = "/staff.ResumeService/Get"
-	ResumeService_Update_FullMethodName = "/staff.ResumeService/Update"
-	ResumeService_Delete_FullMethodName = "/staff.ResumeService/Delete"
-	ResumeService_GetAll_FullMethodName = "/staff.ResumeService/GetAll"
+	ResumeService_Create_FullMethodName  = "/staff.ResumeService/Create"
+	ResumeService_GetById_FullMethodName = "/staff.ResumeService/GetById"
+	ResumeService_Update_FullMethodName  = "/staff.ResumeService/Update"
+	ResumeService_Delete_FullMethodName  = "/staff.ResumeService/Delete"
+	ResumeService_GetAll_FullMethodName  = "/staff.ResumeService/GetAll"
 )
 
 // ResumeServiceClient is the client API for ResumeService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ResumeServiceClient interface {
-	Create(ctx context.Context, in *ResumeCreate, opts ...grpc.CallOption) (*Void, error)
-	Get(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*ResumeGetRes, error)
-	Update(ctx context.Context, in *ResumeUpdate, opts ...grpc.CallOption) (*Void, error)
+	Create(ctx context.Context, in *ResumeCreateReq, opts ...grpc.CallOption) (*ResumeRes, error)
+	GetById(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*ResumeGetByIdRes, error)
+	Update(ctx context.Context, in *ResumeUpdateReq, opts ...grpc.CallOption) (*ResumeRes, error)
 	Delete(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*Void, error)
-	GetAll(ctx context.Context, in *ResumeGetAll, opts ...grpc.CallOption) (*ResumeGetAllRes, error)
+	GetAll(ctx context.Context, in *ResumeGetAllReq, opts ...grpc.CallOption) (*ResumeGetAllRes, error)
 }
 
 type resumeServiceClient struct {
@@ -45,9 +45,9 @@ func NewResumeServiceClient(cc grpc.ClientConnInterface) ResumeServiceClient {
 	return &resumeServiceClient{cc}
 }
 
-func (c *resumeServiceClient) Create(ctx context.Context, in *ResumeCreate, opts ...grpc.CallOption) (*Void, error) {
+func (c *resumeServiceClient) Create(ctx context.Context, in *ResumeCreateReq, opts ...grpc.CallOption) (*ResumeRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Void)
+	out := new(ResumeRes)
 	err := c.cc.Invoke(ctx, ResumeService_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -55,19 +55,19 @@ func (c *resumeServiceClient) Create(ctx context.Context, in *ResumeCreate, opts
 	return out, nil
 }
 
-func (c *resumeServiceClient) Get(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*ResumeGetRes, error) {
+func (c *resumeServiceClient) GetById(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*ResumeGetByIdRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ResumeGetRes)
-	err := c.cc.Invoke(ctx, ResumeService_Get_FullMethodName, in, out, cOpts...)
+	out := new(ResumeGetByIdRes)
+	err := c.cc.Invoke(ctx, ResumeService_GetById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *resumeServiceClient) Update(ctx context.Context, in *ResumeUpdate, opts ...grpc.CallOption) (*Void, error) {
+func (c *resumeServiceClient) Update(ctx context.Context, in *ResumeUpdateReq, opts ...grpc.CallOption) (*ResumeRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Void)
+	out := new(ResumeRes)
 	err := c.cc.Invoke(ctx, ResumeService_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ func (c *resumeServiceClient) Delete(ctx context.Context, in *Byid, opts ...grpc
 	return out, nil
 }
 
-func (c *resumeServiceClient) GetAll(ctx context.Context, in *ResumeGetAll, opts ...grpc.CallOption) (*ResumeGetAllRes, error) {
+func (c *resumeServiceClient) GetAll(ctx context.Context, in *ResumeGetAllReq, opts ...grpc.CallOption) (*ResumeGetAllRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ResumeGetAllRes)
 	err := c.cc.Invoke(ctx, ResumeService_GetAll_FullMethodName, in, out, cOpts...)
@@ -99,11 +99,11 @@ func (c *resumeServiceClient) GetAll(ctx context.Context, in *ResumeGetAll, opts
 // All implementations must embed UnimplementedResumeServiceServer
 // for forward compatibility
 type ResumeServiceServer interface {
-	Create(context.Context, *ResumeCreate) (*Void, error)
-	Get(context.Context, *Byid) (*ResumeGetRes, error)
-	Update(context.Context, *ResumeUpdate) (*Void, error)
+	Create(context.Context, *ResumeCreateReq) (*ResumeRes, error)
+	GetById(context.Context, *Byid) (*ResumeGetByIdRes, error)
+	Update(context.Context, *ResumeUpdateReq) (*ResumeRes, error)
 	Delete(context.Context, *Byid) (*Void, error)
-	GetAll(context.Context, *ResumeGetAll) (*ResumeGetAllRes, error)
+	GetAll(context.Context, *ResumeGetAllReq) (*ResumeGetAllRes, error)
 	mustEmbedUnimplementedResumeServiceServer()
 }
 
@@ -111,19 +111,19 @@ type ResumeServiceServer interface {
 type UnimplementedResumeServiceServer struct {
 }
 
-func (UnimplementedResumeServiceServer) Create(context.Context, *ResumeCreate) (*Void, error) {
+func (UnimplementedResumeServiceServer) Create(context.Context, *ResumeCreateReq) (*ResumeRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedResumeServiceServer) Get(context.Context, *Byid) (*ResumeGetRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+func (UnimplementedResumeServiceServer) GetById(context.Context, *Byid) (*ResumeGetByIdRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedResumeServiceServer) Update(context.Context, *ResumeUpdate) (*Void, error) {
+func (UnimplementedResumeServiceServer) Update(context.Context, *ResumeUpdateReq) (*ResumeRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedResumeServiceServer) Delete(context.Context, *Byid) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedResumeServiceServer) GetAll(context.Context, *ResumeGetAll) (*ResumeGetAllRes, error) {
+func (UnimplementedResumeServiceServer) GetAll(context.Context, *ResumeGetAllReq) (*ResumeGetAllRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
 }
 func (UnimplementedResumeServiceServer) mustEmbedUnimplementedResumeServiceServer() {}
@@ -140,7 +140,7 @@ func RegisterResumeServiceServer(s grpc.ServiceRegistrar, srv ResumeServiceServe
 }
 
 func _ResumeService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResumeCreate)
+	in := new(ResumeCreateReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -152,31 +152,31 @@ func _ResumeService_Create_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: ResumeService_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResumeServiceServer).Create(ctx, req.(*ResumeCreate))
+		return srv.(ResumeServiceServer).Create(ctx, req.(*ResumeCreateReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ResumeService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ResumeService_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Byid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ResumeServiceServer).Get(ctx, in)
+		return srv.(ResumeServiceServer).GetById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ResumeService_Get_FullMethodName,
+		FullMethod: ResumeService_GetById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResumeServiceServer).Get(ctx, req.(*Byid))
+		return srv.(ResumeServiceServer).GetById(ctx, req.(*Byid))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ResumeService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResumeUpdate)
+	in := new(ResumeUpdateReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -188,7 +188,7 @@ func _ResumeService_Update_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: ResumeService_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResumeServiceServer).Update(ctx, req.(*ResumeUpdate))
+		return srv.(ResumeServiceServer).Update(ctx, req.(*ResumeUpdateReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -212,7 +212,7 @@ func _ResumeService_Delete_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _ResumeService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResumeGetAll)
+	in := new(ResumeGetAllReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -224,7 +224,7 @@ func _ResumeService_GetAll_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: ResumeService_GetAll_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResumeServiceServer).GetAll(ctx, req.(*ResumeGetAll))
+		return srv.(ResumeServiceServer).GetAll(ctx, req.(*ResumeGetAllReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -241,8 +241,8 @@ var ResumeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ResumeService_Create_Handler,
 		},
 		{
-			MethodName: "Get",
-			Handler:    _ResumeService_Get_Handler,
+			MethodName: "GetById",
+			Handler:    _ResumeService_GetById_Handler,
 		},
 		{
 			MethodName: "Update",
@@ -258,5 +258,5 @@ var ResumeService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "staffer-protos/resume.proto",
+	Metadata: "resume.proto",
 }

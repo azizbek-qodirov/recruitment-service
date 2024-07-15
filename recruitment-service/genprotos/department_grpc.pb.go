@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v3.12.4
-// source: staffer-protos/department.proto
+// source: department.proto
 
 package genprotos
 
@@ -30,9 +30,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DepartmentServiceClient interface {
-	Create(ctx context.Context, in *DepartmentCreate, opts ...grpc.CallOption) (*Void, error)
-	GetByID(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*DepartmentGetResUpdateReq, error)
-	Update(ctx context.Context, in *DepartmentGetResUpdateReq, opts ...grpc.CallOption) (*Void, error)
+	Create(ctx context.Context, in *DepartmentCreateReq, opts ...grpc.CallOption) (*DepartmentRes, error)
+	GetByID(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*DepartmentRes, error)
+	Update(ctx context.Context, in *DepartmentUpdateReq, opts ...grpc.CallOption) (*DepartmentRes, error)
 	Delete(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*Void, error)
 	GetAll(ctx context.Context, in *DepartmentGetAllReq, opts ...grpc.CallOption) (*DepartmentGetAllRes, error)
 }
@@ -45,9 +45,9 @@ func NewDepartmentServiceClient(cc grpc.ClientConnInterface) DepartmentServiceCl
 	return &departmentServiceClient{cc}
 }
 
-func (c *departmentServiceClient) Create(ctx context.Context, in *DepartmentCreate, opts ...grpc.CallOption) (*Void, error) {
+func (c *departmentServiceClient) Create(ctx context.Context, in *DepartmentCreateReq, opts ...grpc.CallOption) (*DepartmentRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Void)
+	out := new(DepartmentRes)
 	err := c.cc.Invoke(ctx, DepartmentService_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -55,9 +55,9 @@ func (c *departmentServiceClient) Create(ctx context.Context, in *DepartmentCrea
 	return out, nil
 }
 
-func (c *departmentServiceClient) GetByID(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*DepartmentGetResUpdateReq, error) {
+func (c *departmentServiceClient) GetByID(ctx context.Context, in *Byid, opts ...grpc.CallOption) (*DepartmentRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DepartmentGetResUpdateReq)
+	out := new(DepartmentRes)
 	err := c.cc.Invoke(ctx, DepartmentService_GetByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -65,9 +65,9 @@ func (c *departmentServiceClient) GetByID(ctx context.Context, in *Byid, opts ..
 	return out, nil
 }
 
-func (c *departmentServiceClient) Update(ctx context.Context, in *DepartmentGetResUpdateReq, opts ...grpc.CallOption) (*Void, error) {
+func (c *departmentServiceClient) Update(ctx context.Context, in *DepartmentUpdateReq, opts ...grpc.CallOption) (*DepartmentRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Void)
+	out := new(DepartmentRes)
 	err := c.cc.Invoke(ctx, DepartmentService_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -99,9 +99,9 @@ func (c *departmentServiceClient) GetAll(ctx context.Context, in *DepartmentGetA
 // All implementations must embed UnimplementedDepartmentServiceServer
 // for forward compatibility
 type DepartmentServiceServer interface {
-	Create(context.Context, *DepartmentCreate) (*Void, error)
-	GetByID(context.Context, *Byid) (*DepartmentGetResUpdateReq, error)
-	Update(context.Context, *DepartmentGetResUpdateReq) (*Void, error)
+	Create(context.Context, *DepartmentCreateReq) (*DepartmentRes, error)
+	GetByID(context.Context, *Byid) (*DepartmentRes, error)
+	Update(context.Context, *DepartmentUpdateReq) (*DepartmentRes, error)
 	Delete(context.Context, *Byid) (*Void, error)
 	GetAll(context.Context, *DepartmentGetAllReq) (*DepartmentGetAllRes, error)
 	mustEmbedUnimplementedDepartmentServiceServer()
@@ -111,13 +111,13 @@ type DepartmentServiceServer interface {
 type UnimplementedDepartmentServiceServer struct {
 }
 
-func (UnimplementedDepartmentServiceServer) Create(context.Context, *DepartmentCreate) (*Void, error) {
+func (UnimplementedDepartmentServiceServer) Create(context.Context, *DepartmentCreateReq) (*DepartmentRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedDepartmentServiceServer) GetByID(context.Context, *Byid) (*DepartmentGetResUpdateReq, error) {
+func (UnimplementedDepartmentServiceServer) GetByID(context.Context, *Byid) (*DepartmentRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
 }
-func (UnimplementedDepartmentServiceServer) Update(context.Context, *DepartmentGetResUpdateReq) (*Void, error) {
+func (UnimplementedDepartmentServiceServer) Update(context.Context, *DepartmentUpdateReq) (*DepartmentRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedDepartmentServiceServer) Delete(context.Context, *Byid) (*Void, error) {
@@ -140,7 +140,7 @@ func RegisterDepartmentServiceServer(s grpc.ServiceRegistrar, srv DepartmentServ
 }
 
 func _DepartmentService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DepartmentCreate)
+	in := new(DepartmentCreateReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -152,7 +152,7 @@ func _DepartmentService_Create_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: DepartmentService_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DepartmentServiceServer).Create(ctx, req.(*DepartmentCreate))
+		return srv.(DepartmentServiceServer).Create(ctx, req.(*DepartmentCreateReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -176,7 +176,7 @@ func _DepartmentService_GetByID_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _DepartmentService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DepartmentGetResUpdateReq)
+	in := new(DepartmentUpdateReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -188,7 +188,7 @@ func _DepartmentService_Update_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: DepartmentService_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DepartmentServiceServer).Update(ctx, req.(*DepartmentGetResUpdateReq))
+		return srv.(DepartmentServiceServer).Update(ctx, req.(*DepartmentUpdateReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -258,5 +258,5 @@ var DepartmentService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "staffer-protos/department.proto",
+	Metadata: "department.proto",
 }

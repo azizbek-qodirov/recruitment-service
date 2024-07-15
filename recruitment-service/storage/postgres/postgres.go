@@ -15,6 +15,8 @@ type StorageStruct struct {
 	Company_S stg.CompanyInterface
 	Job_S     stg.JobInterface
 	Vacancy_S stg.VacancyInterface
+	JobOffer_S stg.JobOfferInterface
+	JobApp_S  stg.JobAppInterface
 }
 
 func DBCon() (*StorageStruct, error) {
@@ -49,22 +51,36 @@ func DBCon() (*StorageStruct, error) {
 
 
 func (s *StorageStruct) Company() stg.CompanyInterface {
-    if s.Company == nil {
+    if s.Company_S == nil {
 		s.Company_S = NewCompany(s.Db)
 	}
 	return s.Company_S
 }
 
 func (s *StorageStruct) Job() stg.JobInterface {
-	if s.Job == nil {
+	if s.Job_S == nil {
         s.Job_S = NewJob(s.Db)
     }
     return s.Job_S
 }
 
 func (s *StorageStruct) Vacancy() stg.VacancyInterface {
-	if s.Vacancy == nil {
+	if s.Vacancy_S == nil {
         s.Vacancy_S = NewVacancy(s.Db)
     }
     return s.Vacancy_S
+}
+
+func (s *StorageStruct) JobOffer() stg.JobOfferInterface {
+	if s.JobOffer_S == nil {
+        s.JobOffer_S = NewJobOffer(s.Db)
+    }
+    return s.JobOffer_S
+}
+
+func (s *StorageStruct) JobApp() stg.JobAppInterface {
+	if s.JobApp_S == nil {
+        s.JobApp_S = NewJobApp(s.Db)
+    }
+    return s.JobApp_S
 }

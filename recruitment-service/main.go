@@ -1,9 +1,6 @@
 package main
 
-// import (
-// 	"fmt"
-// 	"net/http"
-// )
+
 
 import (
 	"log"
@@ -42,11 +39,4 @@ func main() {
 }
 
 
-// func Handler(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintf(w, "Hello, World!") // write response
-// }
 
-// func main() {
-// 	http.HandleFunc("/", Handler)
-// 	http.ListenAndServe(":7070", nil)
-// }
